@@ -10,12 +10,11 @@ class ExpandedListView extends StatefulWidget {
 }
 
 class _ExpandedListViewState extends State<ExpandedListView> {
-
   final List<Item> _items = [
-
     Item(
-      title:'Computers',
-      content:'Explore different types of computers for personal,work, and gaming needs.',
+      title: 'Computers',
+      content:
+          'Explore different types of computers for personal,work, and gaming needs.',
       isExpanded: false,
       subContent: [
         'Desktop Computers - Traditional, high-powered systems perfect for home or office use.',
