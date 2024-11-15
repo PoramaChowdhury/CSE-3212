@@ -13,14 +13,13 @@ class _ExpandedListViewState extends State<ExpandedListView> {
   final List<Item> _items = [
     Item(
       title: 'Computers',
-      content:
-          'Explore different types of computers for personal,work, and gaming needs.',
+      content: 'Discover the best computers for work, play, and personal use.',
       isExpanded: false,
       subContent: [
-        'Desktop Computers - Traditional, high-powered systems perfect for home or office use.',
-        'Laptops - Portable computing devices.',
-        'Gaming PCs - Designed for gaming with powerful GPUs and CPUs.',
-        'Workstations - Professional-grade computers for design, engineering, or data processing.',
+        'Desktop Computers',
+        'Laptops',
+        'Gaming PCs',
+        'Workstations',
       ],
     ),
     Item(
@@ -28,52 +27,53 @@ class _ExpandedListViewState extends State<ExpandedListView> {
       content: 'Various types of computer mouse',
       isExpanded: false,
       subContent: [
-        'Wired Mouse - A basic and reliable mouse that connects via USB.',
-        'Wireless Mouse - Offers more flexibility with Bluetooth or USB receiver.',
-        'Gaming Mouse - Features high-precision sensors and extra buttons for gaming.',
-        'Ergonomic Mouse - Designed to reduce wrist strain.',
-        'Vertical Mouse - Designed to keep the hand in a more natural.',
+        'Wired Mouse ',
+        'Wireless Mouse',
+        'Gaming Mouse',
+        'Ergonomic Mouse',
+        'Vertical Mouse',
       ],
     ),
     Item(
       title: 'Keyboards',
       content:
-          'Discover different keyboard styles, from mechanical to membrane types.',
+          'Discover different keyboard styles,from mechanical to membrane types.',
       isExpanded: false,
       subContent: [
-        'Mechanical Keyboards - Known for tactile feedback and longevity.',
-        'Ergonomic Keyboards - Designed for comfort.',
-        'Membrane Keyboards - Soft, quiet keyboards commonly used in offices.',
-        'Wireless Keyboards - Keyboards that connect via Bluetooth or wireless receivers.',
-        'Compact Keyboards - Small-sized keyboards ideal for minimalistic setups or portability.',
+        'Mechanical Keyboards',
+        'Ergonomic Keyboards',
+        'Membrane Keyboards',
+        'Wireless Keyboards',
+        'Compact Keyboards',
       ],
     ),
     Item(
       title: 'Monitors',
-      content: 'Variety of monitors for gaming, work, and other  needs.',
+      content: 'Variety of monitors for gaming, work, and other needs.',
       isExpanded: false,
       subContent: [
-        'LED Monitors - Energy-efficient and commonly used for general work and entertainment.',
-        'IPS Monitors - Known for better color accuracy and wide viewing angles.',
-        'Curved Monitors - Provides an immersive experience with a curved screen design.',
-        'Gaming Monitors - High refresh rate monitors.',
-        '4K Monitors - Ultra high-definition monitors.',
+        'LED Monitors',
+        'IPS Monitors',
+        'Curved Monitors',
+        'Gaming Monitors',
+        '4K Monitors',
       ],
     ),
     Item(
       title: 'Headphones',
-      content:
-          'Different variety of headphones for audio quality, comfort, and features.',
+      content: 'Different types of headphone for audio,comfort, and features.',
       isExpanded: false,
       subContent: [
-        'Over-Ear Headphones - Large headphones.',
-        'On-Ear Headphones - Compact and portable headphones that rest on the ears.',
-        'In-Ear Headphones - Small, portable earphones that fit inside the ear canal.',
-        'Noise-Cancelling Headphones - Reduces external noise.',
-        'True Wireless Headphones - Completely wireless earbuds.',
+        'Over-Ear Headphones',
+        'On-Ear Headphones',
+        'In-Ear Headphones',
+        'Noise-Cancelling Headphones',
+        'True Wireless Headphones',
       ],
     ),
   ];
+
+  int? _expandedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -85,14 +85,14 @@ class _ExpandedListViewState extends State<ExpandedListView> {
           'Gadget Hub',
           style: GoogleFonts.montserrat(
             color: Colors.blueGrey,
-            fontSize: 24,
+            fontSize: 26,
             fontWeight: FontWeight.w700,
           ),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.greenAccent, Colors.green.shade100],
+              colors: [Colors.greenAccent.shade100, Colors.green.shade100],
             ),
           ),
         ),
@@ -116,14 +116,14 @@ class _ExpandedListViewState extends State<ExpandedListView> {
         borderRadius: BorderRadius.circular(30.0),
       ),
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-      elevation: 5,
+      elevation: 4,
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.red.shade200, Colors.purple.shade100],
           ),
         ),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             ListTile(
@@ -136,13 +136,14 @@ class _ExpandedListViewState extends State<ExpandedListView> {
                 ),
               ),
               trailing: Icon(
-                item.isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+                _expandedIndex == index
+                    ? Icons.arrow_drop_up
+                    : Icons.arrow_drop_down,
                 color: Colors.black,
-                // Icon color
               ),
               onTap: () => _toggleItemExpansion(index),
             ),
-            if (item.isExpanded)
+            if (_expandedIndex == index)
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -158,32 +159,30 @@ class _ExpandedListViewState extends State<ExpandedListView> {
                     ),
                     const SizedBox(height: 14),
                     if (item.subContent != null)
-                      ...item.subContent!.map((subItem) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 12.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                      ...item.subContent!.map(
+                        (subItem) {
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            // mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               const Icon(
                                 Icons.circle,
-                                size: 10,
+                                size: 6,
                                 color: Colors.blueGrey,
                               ),
                               const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  subItem,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white70,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                              Text(
+                                subItem,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black45,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ],
-                          ),
-                        );
-                      }).toList(),
+                          );
+                        },
+                      ).toList(),
                   ],
                 ),
               ),
@@ -195,7 +194,35 @@ class _ExpandedListViewState extends State<ExpandedListView> {
 
   void _toggleItemExpansion(int index) {
     setState(() {
-      _items[index].isExpanded = !_items[index].isExpanded;
+      if (_expandedIndex == index) {
+        _expandedIndex = null;
+      } else {
+        _expandedIndex = index;
+      }
     });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Clicked on ${_items[index].title}',
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        backgroundColor: Colors.blueGrey,
+        /*action: SnackBarAction(
+          label: 'UNDO',
+          textColor: Colors.white,
+          onPressed: () {},
+        ),*/
+      ),
+    );
   }
 }
